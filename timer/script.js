@@ -104,18 +104,22 @@ function OnRemoveTime() {
 }
 
 function OnSetTime() {
-    hours -= parseInt(hourObject.value);
+    hours = parseInt(hourObject.value);
     if(hours < 0) {
         hours = 0;
     }
-    minutes -= parseInt(minutesObject.value);
+    minutes = parseInt(minutesObject.value);
     if(minutes < 0) {
         minutes = 0;
     }
-    seconds -= parseInt(secondsObject.value);
+    seconds = parseInt(secondsObject.value);
     if(seconds < 0) {
         seconds = 0;
     }
+    let date = new Date();
+    LastTime = date.getTime();
+    miliseconds = 0;
+    SetTimerText();
 }
 
 function OnStartPause() {
@@ -123,21 +127,4 @@ function OnStartPause() {
     LastTime = date.getTime();
     bIsPlaying = !bIsPlaying;
     startObject.textContent = bIsPlaying === true ? "pause" : "start";
-}
-
-function OnStop() {
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
-    miliseconds = 0;
-    startObject.textContent = "start";
-    bIsPlaying = false;
-}
-
-function OnReset() {
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
-    miliseconds = 0;
-    SetTimerText();
 }

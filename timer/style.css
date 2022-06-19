@@ -24,9 +24,36 @@ table {
 
 input, button {
     width: 100%;
-    color: rgb(41, 41, 41);
+    background-color: rgb(65, 65, 65);
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input:focus {
+    outline-style: solid;
+    outline-color: rgb(124, 124, 124);
+    outline-width: 2px;
+}
+
+button:hover {
+    background-color: rgb(124, 124, 124);
+}
+
+button:active {
+    background-color: rgb(97, 97, 97);;
 }
 
 .timer {
     font-size: 100px;
+}
+
+.desc {
+    font-size: 16px;
+    text-align: left;
 }

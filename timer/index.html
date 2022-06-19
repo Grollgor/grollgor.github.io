@@ -15,8 +15,9 @@
 </head>
 <body onload="OnInit();">
     <div class="content">
+        <br>
         <p id="timerText" class="timer">00:00:00</p>
-
+        <br>
         <table>
             <tr>
                 <td>
@@ -45,7 +46,7 @@
                     <button type="button" onclick="OnAddTime();">add</button>
                 </td>
                 <td>
-                    <button type="button" onclick="OnRemoveTime();">remove</button>
+                    <button type="button" onclick="OnRemoveTime();">subtract</button>
                 </td>
                 <td>
                     <button type="button" onclick="OnSetTime();">set</button>
@@ -54,12 +55,6 @@
             <tr>
                 <td>
                     <button id="start" type="button" onclick="OnStartPause();">start</button>
-                </td>
-                <td>
-                    <button type="button" onclick="OnStop();">stop</button>
-                </td>
-                <td>
-                    <button type="button" onclick="OnReset();">reset</button>
                 </td>
             </tr>
         </table>
