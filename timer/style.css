@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: whitesmoke;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(41, 41, 41);
+}
+
+.content {
+    margin: auto;
+    width: 500px;
+    height: 100vh;
+}
+
+table {
+    width: 100%;
+}
+
+input, button {
+    width: 100%;
+    color: rgb(41, 41, 41);
+}
+
+.timer {
+    font-size: 100px;
+}
