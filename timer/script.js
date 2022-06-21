@@ -17,16 +17,17 @@ let hours = 0;
 let LastTime = 0;
 
 function OnInit() {
-    console.log("OnInit");
-
     hourObject = document.getElementById("hours_input");
     minutesObject = document.getElementById("minutes_input");
     secondsObject = document.getElementById("seconds_input");
-
-    timerObject = document.getElementById("timerText");
+    
     startObject = document.getElementById("start");
 
-    SetTimerText();
+    timerObject = document.getElementById("timerText");
+    timerObject.style.display = "block";
+
+    jswarningObj = document.getElementsByClassName("jswarning");
+    jswarningObj[0].style.display = "none";
 
     setInterval(OnTick, 1000 / UpdatesPerSecond);
 }
@@ -40,6 +41,20 @@ function NumberToTime(number) {
 }
 
 function SetTimerText() {
+    if(miliseconds >= 1000) {
+        seconds += parseInt(miliseconds / 1000);
+        miliseconds = miliseconds % 1000;
+    }
+    if(seconds >= 60)
+    {
+        minutes += parseInt(seconds / 60);
+        seconds = seconds % 60;
+    }
+    if(minutes >= 60) {
+        hours += parseInt(minutes / 60);
+        minutes = minutes % 60;
+    }
+
     if(hours > 0) {
         timerObject.textContent = hours + ":" + NumberToTime(minutes) + ":" + NumberToTime(seconds);
     }
@@ -55,19 +70,6 @@ function OnTick() {
         let Difference = CurrentTime - LastTime;
         LastTime = CurrentTime;
         miliseconds += Difference;
-        if(miliseconds >= 1000) {
-            seconds += 1;
-            miliseconds -= 1000;
-        }
-        if(seconds >= 60)
-        {
-            minutes += 1;
-            seconds -= 60;
-        }
-        if(minutes >= 60) {
-            hours += 1;
-            minutes -= 60;
-        }
         SetTimerText();
     }
 }
@@ -119,6 +121,7 @@ function OnSetTime() {
     let date = new Date();
     LastTime = date.getTime();
     miliseconds = 0;
+    ResetInput();
     SetTimerText();
 }
 
