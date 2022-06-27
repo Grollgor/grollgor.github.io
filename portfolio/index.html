@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Portfolio - Philipp Ranft</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <script src="script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&display=swap" rel="stylesheet">
+</head>
+<body onload="OnSlideLoad()">
+    <div class="header">
+        <h1>Philipp Ranft</h1>
+    </div>
+    <br>
+    <div class="content">
+        <h1>Replicated inventory and attributes system</h1>
+        <iframe width="700" height="393.75" src="https://www.youtube-nocookie.com/embed/diatMHED6Ks" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <table>
+            <tr>
+                <th class="table4PerRow">Language</th>
+                <th class="table4PerRow">Engine</th>
+                <th class="table4PerRow">Type</th>
+                <th class="table4PerRow">Links</th>
+            </tr>
+            <tr>
+                <td class="table4PerRow">C++</td>
+                <td class="table4PerRow">Unreal Engine 5</td>
+                <td class="table4PerRow">Personal project</td>
+                <td class="table4PerRow">
+                    <a href="https://github.com/Grollgor/ProjectH-SourceOnly" target="_blank">Source code</a><br>
+                </td>
+            </tr>
+        </table>
+        <p><br>
+            The main goal for this project was to implement a simple inventory and attributes system, which would be suited for a multiplayer game.
+            To achieve this, I made use of Unreals replication system, which automates a lot of the networking code to where I only had to be concerned about where code has to execute.<br><br>
+
+            I decided for both of those systems that it's probably the best idea to have them as actor components.
+            This not only insures consistent behavior across different types of actors, but also minimizes the amount of work required to add the core functionality to a new actor.
+            But I also didn't want to lose the ability to add functionality to certain events.
+            That's why I added delegates throughout those components that allow to easily add things like UI elements when picking an item up, for example.<br><br>
+
+            One of the biggest challenges I faced during this project was the implementation of auras, which are essentially just buffs and debuffs.
+            Because I wanted the aura objects to hold their own functionality so that it's as easy as possible to remove/add auras.
+            This was a challenge because I needed those objects to be replicated but to not be an actor.
+            After a bit of research, I found out that UObjects have the ability to replicate if I override a few functions.<br><br>
+
+            I didn't have any major issues with the inventory system, here I only needed to iterate on my design a bit.
+            At first, I had every item as an actor, which required me to spawn an item into the world if I ever wanted to retrieve data from it, but that also meant that I need a separate class for every item that existed.
+            Now all the static data is moved into a struct that allows me to have a central data table where all the items are stored.
+            It is now also only required to create a new class for an item that actually has functionality, like a weapon or potion.
+            This allows to save items only by their name and various dynamic data and makes it easy to add/remove/change items.
+            This approach also makes it so that an item only ever has to be spawned into the world if it is really needed.
+        </p>
+
+        <br><br><br>
+
+        <h1>Data analysis client</h1>
+        <div class="slideshow-container">
+            <div class="slides fade">
+                <img src="resources/dataclient1.png" style="width: 100%;">
+                <div class="text">Client when no data is loaded</div>
+            </div>
+            
+            <div class="slides fade">
+                <img src="resources/dataclient2.png" style="width: 100%;">
+                <div class="text">CodeCharts view (single data point & summary)</div>
+            </div>
+            
+            <div class="slides fade">
+                <img src="resources/dataclient3.png" style="width: 100%;">
+                <div class="text">ZoomMaps view (single data point)</div>
+            </div>
+            
+            <div class="slides fade">
+                <img src="resources/dataclient4.png" style="width: 100%;">
+                <div class="text">ZoomMaps view (summary)</div>
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+            <a class="next" onclick="plusSlides(1)">&#10095</a>
+        </div>
+        <div style="text-align: center;">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+        <table>
+            <tr>
+                <th class="table3PerRow">Language</th>
+                <th class="table3PerRow">Type</th>
+                <th class="table3PerRow">Duration</th>
+            </tr>
+            <tr>
+                <td class="table3PerRow">C++</td>
+                <td class="table3PerRow">University project</td>
+                <td class="table3PerRow">50 hours</td>
+            </tr>
+        </table>
+        <p><br>
+            This program was part of a project where we had to create a toolbox for the acquisition and evaluation of visual attention data.
+            My task was it to plan and implement a client that can read the acquired data from disk and then present it with the help of various diagrams.
+            And also to help shape what the saved data should look like to make processing as easy as possible.<br><br>
+
+            For the implementation I used various libraries like <a href="https://www.glfw.org/">GLFW</a> and <a href="https://github.com/ocornut/imgui">Dear ImGui</a>.
+            As I was already familiar with them and knew that I could achieve everything I needed in a reasonable amount of time.<br><br>
+
+            One major issue I had during the development was my implementation of heatmaps, which proved to be a major bottleneck when implementing the ZoomMaps analysis.
+            Mainly when loading a large dataset of a few thousand files.
+            I unfortunately didn't have the time to rewrite the problematic code, or I would have risked submitting an unfinished project.
+            The only solution I knew was manageable at the time was to move that processing to another thread.
+            This way the client would at least still be usable for the other tool and the progress could also be displayed.
+            I would now write this code to be multithreaded and would utilize SIMD as much as possible, if I were to implement this now.
+            As I think that the time for processing could be cut significantly this way.
+            It might also be a consideration to move some of that code to the GPU if it's possible.
+        </p>
+    </div>
+</body>
+</html>
