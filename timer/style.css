@@ -1,0 +1,66 @@
+:root {
+    --background-color: rgb(32, 33, 36);
+    --nonactive-color: rgb(41, 42, 45);
+    --hover-color: rgb(62, 64, 68);
+    --active-color: rgb(97, 97, 97);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: whitesmoke;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+.content {
+    margin: auto;
+    width: 500px;
+    height: 100vh;
+}
+
+table {
+    width: 100%;
+}
+
+input, button {
+    width: 100%;
+    background-color: var(--nonactive-color);
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input:focus {
+    outline-style: solid;
+    outline-color: var(--active-color);
+    outline-width: 2px;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+
+button:active {
+    background-color: var(--active-color);
+}
+
+.timer {
+    font-size: 100px;
+}
+
+.desc {
+    font-size: 16px;
+    text-align: left;
+}

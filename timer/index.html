@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Timer</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@900&display=swap" rel="stylesheet">
+</head>
+<body onload="OnInit();">
+    <div class="content">
+        <br>
+        <p class="jswarning">Please enable javascript on this website for the timer to work</p>
+        <p id="timerText" class="timer" style="display: none;">00:00</p>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    <p class="time_text">hours</p>
+                </td>
+                <td>
+                    <p class="time_text">minutes</p>
+                </td>
+                <td>
+                    <p class="time_text">seconds</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="hours_input" type="number" value="0">
+                </td>
+                <td>
+                    <input id="minutes_input" type="number" value="0">
+                </td>
+                <td>
+                    <input id="seconds_input" type="number" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" onclick="OnAddTime();">add</button>
+                </td>
+                <td>
+                    <button type="button" onclick="OnRemoveTime();">subtract</button>
+                </td>
+                <td>
+                    <button type="button" onclick="OnSetTime();">set</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="start" type="button" onclick="OnStartPause();">start</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
