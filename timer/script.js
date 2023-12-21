@@ -21,7 +21,7 @@ function OnInit() {
     minutesObject = document.getElementById("minutes_input");
     secondsObject = document.getElementById("seconds_input");
     
-    startObject = document.getElementById("start");
+    startObject = document.getElementById("button_start");
 
     timerObject = document.getElementById("timerText");
     timerObject.style.display = "block";
@@ -129,5 +129,6 @@ function OnStartPause() {
     let date = new Date();
     LastTime = date.getTime();
     bIsPlaying = !bIsPlaying;
+    startObject.id = bIsPlaying === true ? "button_pause" : "button_start"
     startObject.textContent = bIsPlaying === true ? "pause" : "start";
 }
